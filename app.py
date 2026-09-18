@@ -1,17 +1,8 @@
-"""Tiny FastAPI target used for the demo. /health is what the agent's verification step polls."""
 import platform
-
 import numpy as np
+import psycopg2  # noqa: F401  (needs libpq at import time)
 from fastapi import FastAPI
-
-app = FastAPI(title="nomeshops-sample")
-
-
+app = FastAPI()
 @app.get("/health")
 def health():
-    return {"ok": True, "python": platform.python_version(), "numpy": np.__version__}
-
-
-@app.get("/")
-def root():
-    return {"service": "nomeshops-sample", "sum": float(np.arange(10).sum())}
+    return {"ok": True, "python": platform.python_version(), "psycopg2": psycopg2.__version__.split()[0]}
