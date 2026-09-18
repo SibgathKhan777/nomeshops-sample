@@ -1,0 +1,6 @@
+fastapi>=0.110
+uvicorn>=0.29
+# Deliberately old pin: numpy 1.19.5 has no wheels for Python >= 3.10, so on Ubuntu 22.04+ pip falls back to a
+# source build that fails. On Amazon Linux 2023 (Python 3.9) it installs fine. The deterministic rules table does
+# not know this one, so it exercises: rules miss -> knowledge miss -> Bedrock -> verify -> store -> KB hit next time.
+numpy==1.19.5
